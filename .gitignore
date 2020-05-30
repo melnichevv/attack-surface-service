@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# local dev env
+atss/settings/local.py

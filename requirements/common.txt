@@ -1,0 +1,10 @@
+asgiref==3.2.7
+dj-config-url==0.1.1
+Django==3.0.6
+env-utils==1.2.0
+pre-commit==2.4.0
+psycopg2-binary==2.8.5
+python-dateutil==2.8.1
+pytz==2020.1
+six==1.15.0
+sqlparse==0.3.1

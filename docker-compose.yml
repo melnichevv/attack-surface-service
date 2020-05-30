@@ -1,0 +1,27 @@
+version: "3"
+services:
+
+    postgres:
+      image: postgres:11.6
+      ports:
+        - "5432:5432"
+      environment:
+        POSTGRES_HOST_AUTH_METHOD: "trust"
+
+    django:
+      build: .
+      stdin_open: true
+      tty: true
+      container_name: atss-app-dev
+      ports:
+        - "8000:8000"
+      volumes:
+        - ./:/app
+      depends_on:
+        - postgres
+      environment:
+        - DATABASE_URL=${DATABASE_URL:-postgres://postgres:postgres@postgres:5432/atss}
+        - DJANGO_DEBUG=${DJANGO_DEBUG:-True}
+        - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE:-atss.settings.development}
+        - PYTHONUNBUFFERED=1
+        - PYTHONDONTWRITEBYTECODE=1
