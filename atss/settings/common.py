@@ -126,6 +126,7 @@ LATEST_VERSION = "v1"
 REST_FRAMEWORK = {
     "JSON_UNDERSCOREIZE": {"no_underscore_before_number": False},
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
     "DEFAULT_PARSER_CLASSES": ("rest_framework.parsers.JSONParser",),
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
     "DEFAULT_VERSION": LATEST_VERSION,

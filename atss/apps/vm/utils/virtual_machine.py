@@ -26,7 +26,7 @@ def get_data_from_file(file: str):
 
 @transaction.atomic
 def load_data_from_file(file: Optional[str] = "data_inputs/input-0.json") -> Dict[str, int]:
-    """ Create VirtualMachine and FirewallRule objects based on data in `file`. """
+    """Create VirtualMachine and FirewallRule objects based on data in `file`."""
     file_data = get_data_from_file(file)
     if not file_data or not isinstance(file_data, dict):
         return {}
