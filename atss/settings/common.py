@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # 3rd party
+    "drf_yasg",
+    # local
+    "atss.apps.core",
     "atss.apps.vm",
 ]
 
@@ -114,3 +118,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
+
+
+# DRF
+LATEST_VERSION = "v1"
+
+REST_FRAMEWORK = {
+    "JSON_UNDERSCOREIZE": {"no_underscore_before_number": False},
+    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
+    "DEFAULT_PARSER_CLASSES": ("rest_framework.parsers.JSONParser",),
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
+    "DEFAULT_VERSION": LATEST_VERSION,
+    "ALLOWED_VERSIONS": ["base", LATEST_VERSION],
+    "VERSION_PARAM": "version",
+}
+
+
+DRF_YASG = get_env("DRF_YASG", False)
+SWAGGER_SETTINGS = {"SECURITY_DEFINITIONS": None}
