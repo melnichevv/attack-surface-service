@@ -9,14 +9,13 @@ RUN apt-get update && apt-get install -y \
 
 COPY requirements/ /app/requirements/
 COPY scripts/ /app/scripts/
+COPY data_inputs/ /app/data_inputs/
 
 WORKDIR /app
 
 ENV PYTHONPATH /app
 
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir --requirement /app/requirements/dev.txt
+    pip install --no-cache-dir --requirement /app/requirements/prod.txt
 
-ONBUILD RUN /app/scripts/reset_local_data.sh
-
-CMD python3 manage.py runserver 0.0.0.0:8000
+#ONBUILD RUN /app/scripts/reset_docker_data.sh
