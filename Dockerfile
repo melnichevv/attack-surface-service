@@ -4,11 +4,7 @@ LABEL maintainer="Vladimir Melnichenko <melnichevv@gmail.com>"
 
 # https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    default-libmysqlclient-dev \
-    procps \
-    vim \
-    git \
+    build-essential postgresql-dev gcc python3-dev \
     && apt-get clean
 
 COPY requirements/ /app/requirements/

@@ -8,6 +8,11 @@ services:
       environment:
         POSTGRES_HOST_AUTH_METHOD: "trust"
 
+    memcached:
+      image: memcached:1.5
+      ports:
+        - "11211:11211"
+
     django:
       build: .
       stdin_open: true
@@ -18,6 +23,7 @@ services:
       volumes:
         - ./:/app
       depends_on:
+        - memcached
         - postgres
       environment:
         - DATABASE_URL=${DATABASE_URL:-postgres://postgres:postgres@postgres:5432/atss}
@@ -25,3 +31,4 @@ services:
         - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE:-atss.settings.development}
         - PYTHONUNBUFFERED=1
         - PYTHONDONTWRITEBYTECODE=1
+        - MEMCACHED_URL=${MEMCACHED_URL:-memcached:11211}

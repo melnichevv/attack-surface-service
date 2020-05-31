@@ -1,3 +1,7 @@
-app_name = "core_v1"
+from django.urls import path
 
-urlpatterns = []
+from .views import StatsView
+
+app_name = "vm_v1"
+
+urlpatterns = [path("stats/", StatsView.as_view(), name="stats")]

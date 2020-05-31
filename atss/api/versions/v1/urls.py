@@ -6,7 +6,7 @@ from atss.api.utils.swagger import get_swagger_with_version
 app_name = "v1"
 
 
-urlpatterns = [path("", include("atss.api.versions.v1.vm.urls"))]
+urlpatterns = [path("", include("atss.api.versions.v1.vm.urls")), path("", include("atss.api.versions.v1.core.urls"))]
 
 if settings.DRF_YASG:
     schema_view = get_swagger_with_version(app_name)

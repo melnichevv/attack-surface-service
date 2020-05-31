@@ -55,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "atss.apps.core.middleware.StatsMiddleware",
 ]
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, "fixtures")]
@@ -137,3 +138,11 @@ REST_FRAMEWORK = {
 
 DRF_YASG = get_env("DRF_YASG", False)
 SWAGGER_SETTINGS = {"SECURITY_DEFINITIONS": None}
+
+
+# Caching
+CACHES = {
+    "default": {"BACKEND": "django.core.cache.backends.memcached.MemcachedCache", "LOCATION": get_env("MEMCACHED_URL")}
+}
+
+STATS_CACHE_KEY = "STATS"

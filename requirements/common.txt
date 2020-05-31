@@ -5,3 +5,4 @@ drf-yasg==1.17.1
 env-utils==1.2.0
 pre-commit==2.4.0
 psycopg2-binary==2.8.5
+python-memcached==1.59
