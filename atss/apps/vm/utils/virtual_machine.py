@@ -3,6 +3,7 @@ import logging
 from json import JSONDecodeError
 from typing import Dict, Optional
 
+from django.core.cache import cache
 from django.db import transaction
 
 from atss.apps.vm.models.firewall_rule import FirewallRule
@@ -30,6 +31,10 @@ def load_data_from_file(file: Optional[str] = "data_inputs/input-0.json") -> Dic
     file_data = get_data_from_file(file)
     if not file_data or not isinstance(file_data, dict):
         return {}
+
+    VirtualMachine.objects.all().delete()
+    FirewallRule.objects.all().delete()
+    cache.clear()
 
     vms = VirtualMachine.objects.bulk_create(
         [
